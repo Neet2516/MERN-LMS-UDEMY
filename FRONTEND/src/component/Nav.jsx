@@ -13,7 +13,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const { userData } = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [showhem, setshowhem] = useState(false);
     const handlelogout = async () => {
         try {
@@ -62,7 +62,7 @@ const Nav = () => {
                     )}
                     {(!userData) ? <span className='flex items-center justify-center px-[20px] py-[10px] border-2 border-whie text-white rounded-[10px] text-[18px] font-light cursor-pointer bg-[#000000d5] ' onClick={() => { navigate('/login') }}>Login </span> :
                         <span className='flex items-center justify-center px-[20px] w-[200px] h-[80px] py-[10px] border-2 border-white text-center text-white bg-black rounded-[10px] text-[18px] font-light  cursor-pointer' onClick={handlelogout}>LogOut </span>}
-                    <div className='flex items-center justify-center px-[20px] w-[200px] h-[80px] py-[10px] border-2 border-white  text-white bg-black rounded-[10px] text-[18px] font-light  cursor-pointer'>My Profile</div>
+                    <div className='flex items-center justify-center px-[20px] w-[200px] h-[80px] py-[10px] border-2 border-white  text-white bg-black rounded-[10px] text-[18px] font-light  cursor-pointer' onClick={()=>{navigate("/profile")}}>My Profile</div>
                     {userData?.role === 'educator' && <div className='flex items-center justify-center px-[20px] w-[200px] h-[80px]   py-[10px] border-2 border-white  text-white bg-black rounded-[10px] text-[18px] font-light  cursor-pointer'>My Courses</div>}
                     {userData?.role === 'educator' && <div className='flex items-center justify-center px-[20px] w-[200px] h-[80px]   py-[10px] border-2 border-white  text-white bg-black rounded-[10px] text-[18px] font-light  cursor-pointer'>Dashboard</div>}
                 </div>

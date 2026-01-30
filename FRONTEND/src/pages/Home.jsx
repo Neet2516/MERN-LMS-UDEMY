@@ -1,9 +1,13 @@
 import React from 'react'
+import Nav from '../component/Nav'
 
 const Home = () => {
   return (
-    <div className='text-3xl'>
-      HOME PAGE
+    <div className='w-full overflow-hidden'>
+      <div className='w-full lg:h-[140vh] h-[70vh] relative'>
+        <Nav/>
+      </div>
+      
     </div>
   )
 }

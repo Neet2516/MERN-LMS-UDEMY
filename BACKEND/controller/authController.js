@@ -41,17 +41,17 @@ export const login  = async (req,res)=>{
         const {email,password} = req.body 
         let user = await User.findOne({email}).select("+password");
         if(!user){
-            return res.status(400).json({message:"User not found"})
+            return res.status(404).json({message:"User not found"})
         }
         let isMatch  = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-            return res.status(400).json({message:"Incorrect Password"}) ;
+            return res.status(401).json({message:"Incorrect Password"}) ;
         }
         let token   =  await genToken(user._id)
         res.cookie("token",token,{
             httpOnly :true , 
             secure:false ,
-            sameSite:"Strict" , 
+            sameSite:"Lax" , 
             maxAge : 7 * 24 * 60 *60* 1000 
         })
         return res.status(200).json(user) ; 

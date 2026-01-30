@@ -7,6 +7,9 @@ import {ClipLoader} from 'react-spinners'
 import { useNavigate } from "react-router-dom";
 import { serverUrl } from "../App";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
+
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -17,6 +20,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
   const [loading ,setLoading] = useState(false);
+  const dispatch  = useDispatch();
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -24,7 +28,7 @@ const SignUp = () => {
       const result = await axios
         .post(serverUrl+"/api/auth/signup",{name,email,password,role},{withCredentials:true})
       setLoading(false);  
-      console.log(result.data);
+      dispatch(setUserData(result.data)) ; 
       navigate("/") ;
       toast.success("Sign Up successfully")
        
